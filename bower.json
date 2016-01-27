@@ -1,0 +1,23 @@
+{
+  "name": "tab-panel",
+  "authors": [
+    "moshilos <moshi.los@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.4.9",
+    "angular-ui-router": "ui-router#^0.2.17",
+    "jquery": "^2.2.0"
+  }
+}
