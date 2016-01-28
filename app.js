@@ -6,7 +6,15 @@ angular.module('tab-panel-demo', [])
     this.name = 'moshi';
 })
 .controller('CtrlMoshi', function(){
-    this.namea = 'Moshi';
+    var self = this;
+    self.namea = 'Moshi';
+    self.addTab = function(){
+        self.tabPanelApi.addItem({
+            name: 'moshi2',
+            controller: 'CtrlMoshi as vm',
+            template: '<div inject-tab-panel-api="vm"><span>{{vm.namea}}</span><button ng-click="vm.addTab()">add Tab</button></div>'
+        })
+    }
 })
     .controller('CtrlIdan', function(){
         this.nameb = 'Idan';
