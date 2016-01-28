@@ -10,20 +10,22 @@
             controllerAs: 'vm'
         }
     });
+
     module.directive('injectTabPanelApi', function(){
         return {
             restrict: 'A',
             require: '^tabPanel',
-            link: function(scope, element, attrs, ctrl){
-                scope.tabPanelApi = ctrl.api;
-                if(attrs.injectTabPanelApi){
-                    scope[attrs.injectTabPanelApi].tabPanelApi = ctrl.api;
+            link: function(scope, element, attrs, tabPanelCtrl){
+                scope.tabPanelApi = tabPanelCtrl.api;
+                var myCtrl = element.controller();
+                if(myCtrl){
+                    myCtrl.tabPanelApi = tabPanelCtrl.api
                 }
             }
         }
     });
 
-    function TabPanelCtrl($scope, $compile, $controller){
+    function TabPanelCtrl($scope, $compile){
         var self = this;
         self.activeItem = null;
         self.navigateToItem = navigateToItem;

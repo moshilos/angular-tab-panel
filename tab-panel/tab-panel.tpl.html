@@ -1,8 +1,8 @@
-<ul>
-    <li ng-repeat="item in vm.items" ng-click="vm.navigateToItem(item)">
-        {{item.name}}
+<ul class="nav nav-tabs nav-justified">
+    <li ng-repeat="item in vm.items" ng-click="vm.navigateToItem(item)" role="presentation" ng-class="{ active: item == vm.activeItem }">
+        <a href="#">{{item.name}}</a>
     </li>
 </ul>
-<div class="content" >
+<div class="content">
 
 </div>
