@@ -4,6 +4,10 @@
 (function(module){
     module.directive('tabPanel', function(){
         return {
+            restrict: 'E',
+            scope: {
+                items: '='
+            },
             templateUrl: 'tab-panel/tab-panel.tpl.html',
             bindToController: true,
             controller: TabPanelCtrl,
@@ -11,7 +15,7 @@
         }
     });
 
-    module.directive('injectTabPanelApi', function(){
+    module.directive('tabPanelInstance', function(){
         return {
             restrict: 'A',
             require: '^tabPanel',
@@ -34,29 +38,18 @@
             addItem: addItem
         };
 
-        self.items = [
-            {
-                name: 'moshi',
-                controller: 'CtrlMoshi as vm',
-                template: '<div inject-tab-panel-api="vm"><span>{{vm.namea}}</span><button ng-click="vm.addTab()">add Tab</button></div>'
-            },
-            {
-                name: 'idan',
-                controller: 'CtrlIdan as vm',
-                template: '<span>{{vm.nameb}}</span>'
-            }
-        ];
-
         function addItem(item){
             self.items.push(item);
         }
 
         function navigateToItem(item){
-
             var tpl = '<div ng-controller="' + item.controller+ '"> ' + item.template+'</div>';
             var contentElement = $('.content');
+            if(contentElement.children().length){
+                contentElement.children().scope().$destroy();
+            }
             contentElement.html(tpl);
-            $compile($('.content'))($scope);
+            $compile(contentElement)($scope);
         }
     }
-})(angular.module('tab-panel-demo'));
+})(angular.module('angular-tab-panel'));
